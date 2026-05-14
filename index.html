@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Problem Solver Suite v23</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="mainMenu" class="menu-screen">
+        <div class="menu-content">
+            <h1>Business Problem Solver Suite</h1>
+            <p class="subtitle">[Bob Blaster!]</p>
+            <p class="version">Version 23.0 - Weapon Systems</p>
+            
+            <div class="game-summary">
+                <p class="summary-title">🤖 When Business Problems Attack, Bob Fights Back!</p>
+                <p class="summary-text">
+                    Welcome to the most unconventional corporate training simulator ever created!
+                    In a world where business problems have literally come to life as hostile entities,
+                    only one hero can save the day: <strong>IBM Bob</strong>, the hard-hat-wearing,
+                    code-slinging robot who turns spreadsheets into firepower!
+                </p>
+                <p class="summary-subtitle">🎯 The Mission</p>
+                <p class="summary-text">
+                    The corporate world has gone haywire! Business problems—from urgent issues to
+                    critical deadlines—have manifested as physical monsters threatening to overwhelm
+                    the office. Armed with an arsenal of problem-solving weapons and his trusty hard hat,
+                    Bob must blast through wave after wave of business chaos to restore order to the workplace.
+                </p>
+            </div>
+            
+            <div class="menu-buttons">
+                <button id="startBtn" class="menu-button primary arcade-button">🪙 Insert 1 x Bob Coin to Begin 🪙</button>
+                <button id="configBtn" class="menu-button">Configure Controls</button>
+                <button id="audioBtn" class="menu-button">Audio Settings</button>
+                <button id="highScoresBtn" class="menu-button">High Scores</button>
+            </div>
+            <div class="menu-info">
+                <p>Move: WASD | Look: MOUSE | Shoot: SPACE | Pause: ESC</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="menu-screen" style="display: none;">
+        <div class="menu-content">
+            <h1 class="game-over-title">Game Over</h1>
+            <div class="final-stats">
+                <p class="stat-line">Final Score: <span id="finalScore">0</span></p>
+                <p class="stat-line">Wave Reached: <span id="finalWave">1</span></p>
+                <p class="stat-line">Monsters Defeated: <span id="finalKills">0</span></p>
+                <p class="stat-line">Accuracy: <span id="finalAccuracy">0%</span></p>
+            </div>
+            <div class="menu-buttons">
+                <button id="restartBtn" class="menu-button primary">Play Again</button>
+                <button id="mainMenuBtn" class="menu-button">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wave Complete Screen -->
+    <div id="waveCompleteScreen" class="menu-screen" style="display: none;">
+        <div class="menu-content">
+            <h1 class="wave-complete-title">Wave Complete!</h1>
+            <div class="wave-stats">
+                <p class="stat-line">Wave <span id="completedWave">1</span> Cleared!</p>
+                <p class="stat-line">Bonus: <span id="waveBonus">+500</span></p>
+                <p class="stat-line">Total Score: <span id="waveScore">0</span></p>
+            </div>
+            <p class="wave-message">Get ready for the next wave...</p>
+            <div class="wave-countdown" id="waveCountdown">3</div>
+        </div>
+    </div>
+
+    <!-- High Scores Screen -->
+    <div id="highScoresScreen" class="menu-screen" style="display: none;">
+        <div class="menu-content">
+            <h1>High Scores</h1>
+            <div id="highScoresList" class="high-scores-list">
+                <!-- Populated by JavaScript -->
+            </div>
+            <div class="menu-buttons">
+                <button id="clearScoresBtn" class="menu-button secondary">Clear Scores</button>
+                <button id="backToMenuBtn" class="menu-button">Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls Configuration -->
+    <div id="configMenu" class="menu-screen" style="display: none;">
+        <div class="menu-content">
+            <h2>Configure Controls</h2>
+            <div class="control-list">
+                <div class="control-item">
+                    <label>Move Forward:</label>
+                    <button class="key-button" data-action="moveForward" id="key-moveForward">W</button>
+                </div>
+                <div class="control-item">
+                    <label>Move Backward:</label>
+                    <button class="key-button" data-action="moveBackward" id="key-moveBackward">S</button>
+                </div>
+                <div class="control-item">
+                    <label>Move Right:</label>
+                    <button class="key-button" data-action="moveLeft" id="key-moveLeft">D</button>
+                </div>
+                <div class="control-item">
+                    <label>Move Left:</label>
+                    <button class="key-button" data-action="moveRight" id="key-moveRight">A</button>
+                </div>
+                <div class="control-item">
+                    <label>Shoot:</label>
+                    <button class="key-button" data-action="shoot" id="key-shoot">SPACE</button>
+                </div>
+                <div class="control-separator">Weapon Selection</div>
+                <div class="control-item">
+                    <label>Weapon 1 (Bob Blaster):</label>
+                    <button class="key-button" data-action="weapon1" id="key-weapon1">1</button>
+                </div>
+                <div class="control-item">
+                    <label>Weapon 2 (Problem Spreader):</label>
+                    <button class="key-button" data-action="weapon2" id="key-weapon2">2</button>
+                </div>
+                <div class="control-item">
+                    <label>Weapon 3 (Solution Rifle):</label>
+                    <button class="key-button" data-action="weapon3" id="key-weapon3">3</button>
+                </div>
+                <div class="control-item">
+                    <label>Weapon 4 (Rapid Resolver):</label>
+                    <button class="key-button" data-action="weapon4" id="key-weapon4">4</button>
+                </div>
+                <div class="control-item">
+                    <label>Weapon 5 (Crisis Launcher):</label>
+                    <button class="key-button" data-action="weapon5" id="key-weapon5">5</button>
+                </div>
+            </div>
+            <div class="config-buttons">
+                <button id="resetControls" class="menu-button secondary">Reset to Default</button>
+                <button id="saveControls" class="menu-button">Save & Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Settings -->
+    <div id="audioMenu" class="menu-screen" style="display: none;">
+        <div class="menu-content">
+            <h2>Audio Settings</h2>
+            <div class="control-list">
+                <div class="control-item">
+                    <label>Audio Enabled:</label>
+                    <button id="audioToggle" class="menu-button toggle">ON</button>
+                </div>
+                <div class="control-item">
+                    <label>Master Volume:</label>
+                    <input type="range" id="masterVolume" min="0" max="100" value="70" class="volume-slider">
+                    <span id="masterVolumeValue" class="volume-value">70%</span>
+                </div>
+                <div class="control-item">
+                    <label>Sound Effects:</label>
+                    <input type="range" id="sfxVolume" min="0" max="100" value="80" class="volume-slider">
+                    <span id="sfxVolumeValue" class="volume-value">80%</span>
+                </div>
+                <div class="control-item">
+                    <label>Music Volume:</label>
+                    <input type="range" id="musicVolume" min="0" max="100" value="50" class="volume-slider">
+                    <span id="musicVolumeValue" class="volume-value">50%</span>
+                </div>
+            </div>
+            <div class="config-buttons">
+                <button id="testSound" class="menu-button secondary">Test Sound</button>
+                <button id="saveAudio" class="menu-button">Save & Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pause Menu -->
+    <div id="pauseMenu" class="menu-screen" style="display: none;">
+        <div class="menu-content">
+            <h1>Paused</h1>
+            <div class="menu-buttons">
+                <button id="resumeBtn" class="menu-button primary">Resume</button>
+                <button id="pauseConfigBtn" class="menu-button">Controls</button>
+                <button id="quitBtn" class="menu-button secondary">Quit to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- In-Game HUD -->
+    <div id="gameHUD" style="display: none;">
+        <div id="crosshair"></div>
+        
+        <!-- Top HUD -->
+        <div id="topHUD">
+            <div class="hud-item">
+                <span class="hud-label">Score:</span>
+                <span id="scoreDisplay" class="hud-value">0</span>
+            </div>
+            <div class="hud-item">
+                <span class="hud-label">Wave:</span>
+                <span id="waveDisplay" class="hud-value">1</span>
+            </div>
+            <div class="hud-item">
+                <span class="hud-label">Monsters:</span>
+                <span id="monstersDisplay" class="hud-value">0/0</span>
+            </div>
+        </div>
+
+        <!-- Bottom HUD -->
+        <div id="bottomHUD">
+            <div class="hud-section">
+                <div id="healthBar" class="bar-container">
+                    <div class="bar-label">Health</div>
+                    <div class="bar-bg">
+                        <div id="healthBarFill" class="bar-fill health-bar"></div>
+                    </div>
+                    <div class="bar-value" id="healthValue">100</div>
+                </div>
+            </div>
+            <div class="hud-section center">
+                <div class="weapon-display">
+                    <div id="weaponName" class="weapon-name">Bob Blaster</div>
+                    <div id="weaponAmmo" class="ammo-display">∞</div>
+                </div>
+            </div>
+            <div class="hud-section">
+                <div id="comboDisplay" class="combo-display" style="display: none;">
+                    <span class="combo-label">COMBO</span>
+                    <span id="comboValue" class="combo-value">x2</span>
+                </div>
+            </div>
+            <div class="hud-section">
+                <div id="activePowerUps" class="active-powerups-container">
+                    <!-- Active power-ups will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Damage Indicator -->
+        <div id="damageIndicator" class="damage-indicator"></div>
+    </div>
+
+    <!-- Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Core Game Systems (load in order) -->
+    <script src="js/audioSystem.js"></script>
+    <script src="js/particleSystem.js"></script>
+    <script src="js/gameState.js"></script>
+    <script src="js/scoreSystem.js"></script>
+    <script src="js/playerHealth.js"></script>
+    
+    <!-- Monster & Combat Systems -->
+    <script src="js/monsterTypes.js"></script>
+    <script src="js/bossSystem.js"></script>
+    <script src="js/waveSystem.js"></script>
+    
+    <!-- Weapon & Combat -->
+    <script src="js/weaponSystem.js"></script>
+    <script src="js/spellSystem.js"></script>
+    <script src="js/magicSystem.js"></script>
+    <script src="js/elementalSystem.js"></script>
+    
+    <!-- Power-ups & Resources -->
+    <script src="js/powerups.js"></script>
+    <script src="js/resourceSystem.js"></script>
+    <script src="js/inventorySystem.js"></script>
+    <script src="js/craftingSystem.js"></script>
+    
+    <!-- Environment & World -->
+    <script src="js/environmentSystem.js"></script>
+    <script src="js/terrainSystem.js"></script>
+    <script src="js/weatherSystem.js"></script>
+    <script src="js/biomeSystem.js"></script>
+    <script src="js/levelGenerator.js"></script>
+    <script src="js/eventSystem.js"></script>
+    
+    <!-- AI & Tactics -->
+    <script src="js/aiDirector.js"></script>
+    <script src="js/tacticsSystem.js"></script>
+    <script src="js/stealthSystem.js"></script>
+    <script src="js/squadAI.js"></script>
+    <script src="js/companionSystem.js"></script>
+    
+    <!-- Quest & NPC Systems -->
+    <script src="js/npcSystem.js"></script>
+    <script src="js/dialogueSystem.js"></script>
+    <script src="js/questSystem.js"></script>
+    
+    <!-- Progression & Social -->
+    <script src="js/achievementSystem.js"></script>
+    <script src="js/prestigeSystem.js"></script>
+    <script src="js/challengeSystem.js"></script>
+    <script src="js/endgameSystem.js"></script>
+    
+    <!-- Multiplayer & Social -->
+    <script src="js/multiplayerSystem.js"></script>
+    <script src="js/tradingSystem.js"></script>
+    <script src="js/leaderboardSystem.js"></script>
+    
+    <!-- Main Game -->
+    <script src="game.js"></script>
+</body>
+</html>

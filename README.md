@@ -1,7 +1,6 @@
-# 🤖 Bob Blaster: Business Problem Solver Suite v24 🎮
+# 🤖 Bob Blaster: Business Problem Solver Suite 🎮
 
 ## *When Business Problems Attack, Bob Fights Back!*
-## 🌋 **NEW in V24: Environmental Hazards & Terrain Edition**
 
 Welcome to the most unconventional corporate training simulator ever created! In a world where business problems have literally come to life as hostile entities, only one hero can save the day: **IBM Bob**, the hard-hat-wearing, code-slinging robot who turns spreadsheets into firepower!
 
@@ -45,39 +44,6 @@ Bob comes equipped with **5 devastating weapons**, each designed to tackle diffe
   - Massive explosive damage
   - Area-of-effect problem solving
   - Red-hatted Bob rockets for catastrophic impact
-
-### 🌋 Environmental Hazards & Terrain (V24)
-
-Experience a **dynamic battlefield** with dangerous hazards and strategic terrain:
-
-**Environmental Hazards:**
-- 🔥 **Lava Pits** - Bubbling molten hazards that deal fire damage and slow movement
-- ⚡ **Electric Fields** - Crackling energy zones with stun effects
-- ☠️ **Poison Gas** - Toxic clouds dealing damage over time
-- 🧪 **Acid Pools** - Corrosive areas that reduce armor
-- 🔥 **Fire Zones** - Burning areas with spread mechanics
-- ❄️ **Ice Fields** - Freezing zones that slow and freeze
-
-**Destructible Cover:**
-- 📦 **Wooden Crates** - Basic cover (50% protection)
-- 🛡️ **Metal Barriers** - Strong fortifications (75% protection)
-- 🧱 **Stone Walls** - Heavy defensive structures (85% protection)
-- 💼 **Sandbags** - Tactical cover (60% protection)
-- 🏗️ **Concrete Blocks** - Robust barriers (80% protection)
-- ⚡ **Energy Shields** - Regenerating high-tech barriers (90% protection)
-- 🚗 **Vehicle Wrecks** - Explosive cover (70% protection)
-
-**Elevation & Platforms:**
-- 🪜 **Multi-level Terrain** - Gain height advantage for damage bonuses
-- 🎪 **Platform Types** - Solid, floating, bouncy, crumbling, and ice platforms
-- 🎯 **Strategic Positioning** - Elevation affects combat effectiveness
-- 🪂 **Jump Mechanics** - Navigate vertical terrain with physics-based movement
-
-**Interactive Objects:**
-- 💥 **Explosive Barrels** - Create massive explosions
-- ⚡ **Electric Generators** - Release shocking area effects
-- ☠️ **Gas Canisters** - Spawn poison clouds
-- ❄️ **Cryo Tanks** - Create freezing zones
 
 ### 🎨 Dynamic Combat Arena
 
@@ -150,10 +116,7 @@ Survive **8 dynamic events** that can turn the tide of battle:
 - **Quest System** - Complete objectives for rewards
 - **NPC Dialogue** - Branching conversations
 - **Weather Effects** - Dynamic environmental conditions
-- **Environmental Hazards** - Lava, electric fields, poison gas, and more
-- **Destructible Cover** - Strategic battlefield elements with health systems
-- **Elevation System** - Multi-level terrain with platforming mechanics
-- **Interactive Objects** - Explosive barrels and environmental triggers
+- **Destructible Cover** - Strategic battlefield elements
 
 ---
 
