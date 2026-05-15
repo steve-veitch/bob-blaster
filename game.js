@@ -90,6 +90,8 @@ const baseMoveSpeed = 100.0;
 let moveSpeed = baseMoveSpeed;
 const baseShootCooldown = 200;
 let shootCooldown = baseShootCooldown;
+const PROJECTILE_HIT_DISTANCE = 8; // Collision detection radius
+const PROJECTILE_MAX_DISTANCE = 200; // Maximum distance before projectile despawns
 
 // Camera rotation
 let euler = new THREE.Euler(0, 0, 0, 'YXZ');
@@ -892,6 +894,7 @@ function shoot() {
         const direction = new THREE.Vector3();
         camera.getWorldDirection(direction);
         projectile.userData.velocity = direction.multiplyScalar(150);
+        projectile.userData.damage = 100;
 
         scene.add(projectile);
         projectiles.push(projectile);
@@ -1077,7 +1080,7 @@ function updateProjectiles(delta) {
             const monster = monsters[j];
             const distance = projectile.position.distanceTo(monster.position);
             
-            if (distance < 8) {
+            if (distance < PROJECTILE_HIT_DISTANCE) {
                 // Apply damage to monster
                 monster.userData.health -= projectileDamage;
                 hit = true;
@@ -1111,6 +1114,9 @@ function updateProjectiles(delta) {
                 
                 // Handle rocket explosion radius
                 if (explosionRadius > 0) {
+                    // Collect monsters to remove to avoid modifying array during iteration
+                    const monstersToRemove = [];
+                    
                     // Damage all monsters within explosion radius
                     for (let k = monsters.length - 1; k >= 0; k--) {
                         if (k === j) continue; // Skip the directly hit monster
@@ -1129,14 +1135,19 @@ function updateProjectiles(delta) {
                             // Check if splash killed the monster
                             if (nearbyMonster.userData.health <= 0) {
                                 const splashScoreValue = nearbyMonster.userData.scoreValue || 100;
-                                waveSystem.removeMonster(nearbyMonster);
-                                scoreSystem.addKill(splashScoreValue);
+                                monstersToRemove.push({ monster: nearbyMonster, score: splashScoreValue });
                                 
                                 // Explosion particles for splash kill
                                 particleSystem.createExplosion(nearbyMonster.position, 0xff6600, 15);
                             }
                         }
                     }
+                    
+                    // Remove monsters after iteration completes
+                    monstersToRemove.forEach(({ monster, score }) => {
+                        waveSystem.removeMonster(monster);
+                        scoreSystem.addKill(score);
+                    });
                     
                     // Create larger explosion effect for rockets
                     particleSystem.createExplosion(projectile.position, 0xff0000, 50);
@@ -1150,7 +1161,7 @@ function updateProjectiles(delta) {
             }
         }
 
-        if (hit || projectile.position.length() > 200) {
+        if (hit || projectile.position.length() > PROJECTILE_MAX_DISTANCE) {
             scene.remove(projectile);
             projectiles.splice(i, 1);
         }
