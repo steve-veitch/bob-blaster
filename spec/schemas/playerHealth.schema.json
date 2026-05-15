@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/playerHealth.schema.json",
+  "title": "Player Health & Collision Constants",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "maxHealth": {
+      "type": "number",
+      "const": 100
+    },
+    "invulnerabilityDuration": {
+      "type": "number",
+      "const": 1.5
+    },
+    "damagePerHit": {
+      "type": "number",
+      "const": 10
+    },
+    "collisionDistance": {
+      "type": "number",
+      "const": 5.0
+    }
+  },
+  "required": [
+    "maxHealth",
+    "invulnerabilityDuration",
+    "damagePerHit",
+    "collisionDistance"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/biomes.schema.json",
+  "title": "Biome Definitions",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^[a-zA-Z0-9_]+$": {
+      "$ref": "#/$defs/biome"
+    }
+  },
+  "$defs": {
+    "biome": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "skyColor": {
+          "type": "integer"
+        },
+        "fogColor": {
+          "type": "integer"
+        },
+        "fogDensity": {
+          "type": "number"
+        },
+        "ambientLight": {
+          "type": "number"
+        },
+        "directionalLight": {
+          "type": "number"
+        },
+        "terrainColors": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "low": {
+              "$ref": "#/$defs/rgb"
+            },
+            "mid": {
+              "$ref": "#/$defs/rgb"
+            },
+            "high": {
+              "$ref": "#/$defs/rgb"
+            }
+          },
+          "required": [
+            "low",
+            "mid",
+            "high"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "skyColor",
+        "fogColor",
+        "fogDensity",
+        "ambientLight",
+        "directionalLight",
+        "terrainColors"
+      ]
+    },
+    "rgb": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "r": {
+          "type": "number"
+        },
+        "g": {
+          "type": "number"
+        },
+        "b": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "r",
+        "g",
+        "b"
+      ]
+    }
+  }
+}

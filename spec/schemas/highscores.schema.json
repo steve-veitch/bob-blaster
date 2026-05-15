@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/highscores.schema.json",
+  "title": "BPSS High Scores",
+  "type": "array",
+  "maxItems": 10,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "score": {
+        "type": "number",
+        "minimum": 0
+      },
+      "wave": {
+        "type": "number",
+        "minimum": 1
+      },
+      "kills": {
+        "type": "number",
+        "minimum": 0
+      },
+      "accuracy": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "date": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "required": [
+      "score",
+      "wave",
+      "kills",
+      "accuracy",
+      "date"
+    ]
+  }
+}

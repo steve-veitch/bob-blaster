@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/weapons.schema.json",
+  "title": "Weapon System Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "WeaponTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "shotgun",
+          "sniper",
+          "machineGun",
+          "rocket"
+        ]
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "WeaponManager": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "contains": {
+            "type": "string",
+            "const": "getCurrentWeapon"
+          }
+        }
+      },
+      "required": [
+        "methods"
+      ]
+    },
+    "Weapon": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "methods",
+        "fields"
+      ]
+    }
+  },
+  "required": [
+    "WeaponTypes",
+    "WeaponManager",
+    "Weapon"
+  ]
+}

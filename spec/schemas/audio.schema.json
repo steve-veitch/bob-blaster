@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/audio.schema.json",
+  "title": "Audio System Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "masterVolume": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "sfxVolume": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "musicVolume": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "supportedSounds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "enabled",
+    "masterVolume",
+    "sfxVolume",
+    "musicVolume",
+    "supportedSounds"
+  ]
+}

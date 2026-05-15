@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/scoreStats.schema.json",
+  "title": "Score Stats",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "score": {
+      "type": "number",
+      "minimum": 0
+    },
+    "kills": {
+      "type": "number",
+      "minimum": 0
+    },
+    "accuracy": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "maxCombo": {
+      "type": "number",
+      "minimum": 0
+    },
+    "shots": {
+      "type": "number",
+      "minimum": 0
+    },
+    "hits": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "score",
+    "kills",
+    "accuracy",
+    "maxCombo",
+    "shots",
+    "hits"
+  ]
+}

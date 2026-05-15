@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/levelgen.schema.json",
+  "title": "Level Generator State (Config Only)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "arenaLayouts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "seed": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "arenaLayouts",
+    "seed"
+  ]
+}

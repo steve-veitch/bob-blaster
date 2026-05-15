@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/powerups.schema.json",
+  "title": "Power-ups",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "health",
+          "speed",
+          "rapidFire",
+          "shield",
+          "damageBoost"
+        ]
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "spawnIntervalSeconds": {
+      "type": "number",
+      "const": 10
+    },
+    "maxOnField": {
+      "type": "number",
+      "const": 5
+    }
+  },
+  "required": [
+    "types",
+    "spawnIntervalSeconds",
+    "maxOnField"
+  ]
+}

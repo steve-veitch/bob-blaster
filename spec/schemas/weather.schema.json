@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/weather.schema.json",
+  "title": "Weather System State (Config Only)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "currentWeather": {
+      "type": "string"
+    },
+    "weatherDurationSeconds": {
+      "type": "number"
+    },
+    "weatherTimerSeconds": {
+      "type": "number"
+    },
+    "transitionTimeSeconds": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "currentWeather",
+    "weatherDurationSeconds",
+    "weatherTimerSeconds",
+    "transitionTimeSeconds"
+  ]
+}

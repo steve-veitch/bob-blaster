@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/keybindings.schema.json",
+  "title": "BPSS Key Bindings",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "moveForward": {
+      "type": "string",
+      "default": "KeyW"
+    },
+    "moveBackward": {
+      "type": "string",
+      "default": "KeyS"
+    },
+    "moveLeft": {
+      "type": "string",
+      "default": "KeyD"
+    },
+    "moveRight": {
+      "type": "string",
+      "default": "KeyA"
+    },
+    "shoot": {
+      "type": "string",
+      "default": "Space"
+    },
+    "weapon1": {
+      "type": "string",
+      "default": "Digit1"
+    },
+    "weapon2": {
+      "type": "string",
+      "default": "Digit2"
+    },
+    "weapon3": {
+      "type": "string",
+      "default": "Digit3"
+    },
+    "weapon4": {
+      "type": "string",
+      "default": "Digit4"
+    },
+    "weapon5": {
+      "type": "string",
+      "default": "Digit5"
+    }
+  },
+  "required": [
+    "moveForward",
+    "moveBackward",
+    "moveLeft",
+    "moveRight",
+    "shoot"
+  ]
+}

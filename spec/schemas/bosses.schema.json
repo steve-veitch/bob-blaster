@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/bosses.schema.json",
+  "title": "Boss Rules",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "bossWaveInterval": {
+      "type": "number",
+      "const": 5
+    },
+    "healthFormula": {
+      "type": "string",
+      "const": "1000 + (wave * 500)"
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "phase": {
+          "type": "number",
+          "const": 1
+        },
+        "attackCooldownSeconds": {
+          "type": "number",
+          "const": 3.0
+        },
+        "moveSpeed": {
+          "type": "number",
+          "const": 8.0
+        }
+      },
+      "required": [
+        "phase",
+        "attackCooldownSeconds",
+        "moveSpeed"
+      ]
+    }
+  },
+  "required": [
+    "bossWaveInterval",
+    "healthFormula",
+    "defaults"
+  ]
+}

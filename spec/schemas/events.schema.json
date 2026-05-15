@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/events.schema.json",
+  "title": "Random Events (Code Truth)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "eventIntervalSeconds": {
+      "type": "number",
+      "const": 30
+    },
+    "events": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "meteorShower": {
+          "$ref": "#/$defs/event"
+        },
+        "powerSurge": {
+          "$ref": "#/$defs/event"
+        },
+        "monsterFrenzy": {
+          "$ref": "#/$defs/event"
+        },
+        "healingRain": {
+          "$ref": "#/$defs/event"
+        },
+        "timeWarp": {
+          "$ref": "#/$defs/event"
+        },
+        "lootBonanza": {
+          "$ref": "#/$defs/event"
+        },
+        "fogOfWar": {
+          "$ref": "#/$defs/event"
+        },
+        "berserk": {
+          "$ref": "#/$defs/event"
+        }
+      },
+      "required": [
+        "meteorShower",
+        "powerSurge",
+        "monsterFrenzy",
+        "healingRain",
+        "timeWarp",
+        "lootBonanza",
+        "fogOfWar",
+        "berserk"
+      ]
+    }
+  },
+  "required": [
+    "eventIntervalSeconds",
+    "events"
+  ],
+  "$defs": {
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "effect": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "duration",
+        "effect"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "eventIntervalSeconds": 30,
+      "events": {
+        "meteorShower": {
+          "name": "Meteor Shower",
+          "duration": 10.0,
+          "effect": "Meteors fall from sky dealing damage"
+        },
+        "powerSurge": {
+          "name": "Power Surge",
+          "duration": 15.0,
+          "effect": "All weapons deal double damage"
+        },
+        "monsterFrenzy": {
+          "name": "Monster Frenzy",
+          "duration": 20.0,
+          "effect": "Monsters spawn at 2x rate"
+        },
+        "healingRain": {
+          "name": "Healing Rain",
+          "duration": 12.0,
+          "effect": "Player slowly regenerates health"
+        },
+        "timeWarp": {
+          "name": "Time Warp",
+          "duration": 10.0,
+          "effect": "Everything moves in slow motion"
+        },
+        "lootBonanza": {
+          "name": "Loot Bonanza",
+          "duration": 15.0,
+          "effect": "Power-ups spawn at 3x rate"
+        },
+        "fogOfWar": {
+          "name": "Fog of War",
+          "duration": 20.0,
+          "effect": "Visibility reduced dramatically"
+        },
+        "berserk": {
+          "name": "Berserk Mode",
+          "duration": 10.0,
+          "effect": "Movement speed doubled, take more damage"
+        }
+      }
+    }
+  ]
+}

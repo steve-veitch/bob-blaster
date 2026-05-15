@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/waveSystem.schema.json",
+  "title": "Wave System Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "monstersPerWave": {
+      "type": "integer",
+      "const": 7
+    },
+    "totalMonstersFormula": {
+      "type": "string",
+      "const": "monstersPerWave + floor((wave - 1) * 1.5)"
+    },
+    "spawnArea": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "xMin": {
+          "type": "number",
+          "const": -80
+        },
+        "xMax": {
+          "type": "number",
+          "const": 80
+        },
+        "zMin": {
+          "type": "number",
+          "const": -80
+        },
+        "zMax": {
+          "type": "number",
+          "const": 80
+        },
+        "y": {
+          "type": "number",
+          "const": 8
+        }
+      },
+      "required": [
+        "xMin",
+        "xMax",
+        "zMin",
+        "zMax",
+        "y"
+      ]
+    },
+    "spawnRules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minDistance": {
+          "type": "number",
+          "const": 20
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "const": 100
+        }
+      },
+      "required": [
+        "minDistance",
+        "maxAttempts"
+      ]
+    },
+    "endlessMode": {
+      "type": "boolean",
+      "const": true
+    },
+    "difficultyMultiplierFormula": {
+      "type": "string",
+      "const": "1.0 + (wave - 1) * 0.15"
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxX": {
+          "type": "number",
+          "const": 90
+        },
+        "maxZ": {
+          "type": "number",
+          "const": 90
+        },
+        "margin": {
+          "type": "number",
+          "const": 10
+        },
+        "behavior": {
+          "type": "string",
+          "const": "reflect"
+        }
+      },
+      "required": [
+        "maxX",
+        "maxZ",
+        "margin",
+        "behavior"
+      ]
+    }
+  },
+  "required": [
+    "monstersPerWave",
+    "totalMonstersFormula",
+    "spawnArea",
+    "spawnRules",
+    "endlessMode",
+    "difficultyMultiplierFormula",
+    "bounds"
+  ]
+}

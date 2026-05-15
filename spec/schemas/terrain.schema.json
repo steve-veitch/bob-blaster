@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bob-blaster/spec/terrain.schema.json",
+  "title": "Terrain System State (Config Only)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "terrainSize": {
+      "type": "number"
+    },
+    "segments": {
+      "type": "integer"
+    },
+    "maxHeight": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "terrainSize",
+    "segments",
+    "maxHeight"
+  ]
+}
