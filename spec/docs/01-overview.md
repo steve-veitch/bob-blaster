@@ -23,8 +23,15 @@ When documents (README/CHANGELOG) and code disagree, **the code wins**.
 - Biome configuration data
 - Boss interval and base scaling formula
 
+### Fully Implemented Systems
+- **Weapon system** (WeaponManager/Weapon with all 5 weapon types)
+  - Complete damage system with per-weapon values
+  - Monster health system with damage accumulation
+  - Rocket explosion radius with splash damage
+  - Weapon-specific visuals and behaviors
+  - Ammo management and cooldown systems
+
 ### Contract-only (incomplete or stub in provided files)
-- Weapon system (WeaponManager/Weapon interface)
 - Audio system API surface (playSound/toggle/volume/music)
 - Terrain/level generator/particles/weather advanced behaviour (only state/config in provided files)
 

@@ -1070,35 +1070,82 @@ function updateProjectiles(delta) {
 
         let hit = false;
         const monsters = waveSystem.monsters;
+        const projectileDamage = projectile.userData.damage || 100;
+        const explosionRadius = projectile.userData.explosionRadius || 0;
         
         for (let j = monsters.length - 1; j >= 0; j--) {
             const monster = monsters[j];
             const distance = projectile.position.distanceTo(monster.position);
             
             if (distance < 8) {
-                // Use monster's score value if available
-                const scoreValue = monster.userData.scoreValue || 100;
-                waveSystem.removeMonster(monster);
-                scoreSystem.addKill(scoreValue);
+                // Apply damage to monster
+                monster.userData.health -= projectileDamage;
                 hit = true;
                 
                 // Play hit sound
                 audioSystem.playSound('hit');
-
-                // Explosion light effect
-                const explosion = new THREE.PointLight(0xff0000, 3, 20);
-                explosion.position.copy(monster.position);
-                scene.add(explosion);
-                setTimeout(() => scene.remove(explosion), 100);
                 
-                // Explosion particles
-                particleSystem.createExplosion(monster.position, 0xff6600, 25);
+                // Hit spark effect
                 particleSystem.createHitSpark(monster.position);
                 
-                // Check if wave complete
-                if (waveSystem.monstersAlive === 0) {
-                    completeWave();
+                // Check if monster is dead
+                if (monster.userData.health <= 0) {
+                    const scoreValue = monster.userData.scoreValue || 100;
+                    waveSystem.removeMonster(monster);
+                    scoreSystem.addKill(scoreValue);
+                    
+                    // Explosion light effect
+                    const explosion = new THREE.PointLight(0xff0000, 3, 20);
+                    explosion.position.copy(monster.position);
+                    scene.add(explosion);
+                    setTimeout(() => scene.remove(explosion), 100);
+                    
+                    // Explosion particles
+                    particleSystem.createExplosion(monster.position, 0xff6600, 25);
+                    
+                    // Check if wave complete
+                    if (waveSystem.monstersAlive === 0) {
+                        completeWave();
+                    }
                 }
+                
+                // Handle rocket explosion radius
+                if (explosionRadius > 0) {
+                    // Damage all monsters within explosion radius
+                    for (let k = monsters.length - 1; k >= 0; k--) {
+                        if (k === j) continue; // Skip the directly hit monster
+                        
+                        const nearbyMonster = monsters[k];
+                        const explosionDistance = projectile.position.distanceTo(nearbyMonster.position);
+                        
+                        if (explosionDistance < explosionRadius) {
+                            // Apply splash damage (50% of direct damage)
+                            const splashDamage = projectileDamage * 0.5;
+                            nearbyMonster.userData.health -= splashDamage;
+                            
+                            // Create splash effect
+                            particleSystem.createHitSpark(nearbyMonster.position);
+                            
+                            // Check if splash killed the monster
+                            if (nearbyMonster.userData.health <= 0) {
+                                const splashScoreValue = nearbyMonster.userData.scoreValue || 100;
+                                waveSystem.removeMonster(nearbyMonster);
+                                scoreSystem.addKill(splashScoreValue);
+                                
+                                // Explosion particles for splash kill
+                                particleSystem.createExplosion(nearbyMonster.position, 0xff6600, 15);
+                            }
+                        }
+                    }
+                    
+                    // Create larger explosion effect for rockets
+                    particleSystem.createExplosion(projectile.position, 0xff0000, 50);
+                    const bigExplosion = new THREE.PointLight(0xff0000, 5, explosionRadius * 2);
+                    bigExplosion.position.copy(projectile.position);
+                    scene.add(bigExplosion);
+                    setTimeout(() => scene.remove(bigExplosion), 200);
+                }
+                
                 break;
             }
         }
